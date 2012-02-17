@@ -1,0 +1,1 @@
+<b>Chat window</b>
