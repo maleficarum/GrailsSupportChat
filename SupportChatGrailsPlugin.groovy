@@ -47,16 +47,16 @@ This plugin provides to any grails application a support chat to help users, get
     }
 
     def doWithDynamicMethods = { ctx ->
-		//Access to config to add a dynamic methods
-		application.config.supportChat.supportEntity.metaClass.isAdmin = { true }
-		application.config.supportChat.supportEntity.metaClass.isAdmin = { true }
+		//Add a method to know if loged user is admin
+		application.config.supportChat.supportEntity.metaClass.scadmin = true
+		application.config.supportChat.supportEntity.metaClass.isScAdmin = { scadmin }
+		application.config.supportChat.supportEntity.metaClass.setScAdmin = { v -> scadmin = v  }
 		
-		application.config.supportChat.userEntity.metaClass.loginDate = { new Date() }
-		application.config.supportChat.userEntity.metaClass.loginDate = { new Date() }
     }
 
     def doWithApplicationContext = { applicationContext ->
-		println(applicationContext.getServletContext().setAttribute("spSessionsMap", new java.util.concurrent.ConcurrentHashMap<String, Object>(50, 3, 30)))
+		applicationContext.getServletContext().setAttribute("scAdminSessions", new java.util.concurrent.ConcurrentHashMap<String, Object>())
+		applicationContext.getServletContext().setAttribute("scUsersSessions", new java.util.concurrent.ConcurrentHashMap<String, Object>())		
     }
 
     def onChange = { event ->
