@@ -1,0 +1,23 @@
+<plugin name='support-chat' version='0.1' grailsVersion='2.0 &gt; *'>
+  <author>Oscar Ivan Hernandez Ventura</author>
+  <authorEmail>oscar@angellore.com.mx</authorEmail>
+  <title>Support Chat Plugin</title>
+  <description>This plugin provides to any grails application a support chat to help users, getting communication with any authenticated user allowed to give support.
+</description>
+  <documentation>http://grails.org/plugin/support-chat</documentation>
+  <type>SupportChatGrailsPlugin</type>
+  <resources>
+    <resource>SupportChatTagLib</resource>
+  </resources>
+  <repositories>
+    <repository name='grailsCentral' url='http://plugins.grails.org' />
+    <repository name='http://repo.grails.org/grails/plugins' url='http://repo.grails.org/grails/plugins/' />
+    <repository name='http://repo.grails.org/grails/core' url='http://repo.grails.org/grails/core/' />
+    <repository name='grailsCore' url='http://svn.codehaus.org/grails/trunk/grails-plugins' />
+    <repository name='mavenCentral' url='http://repo1.maven.org/maven2/' />
+  </repositories>
+  <dependencies />
+  <plugins />
+  <runtimePluginRequirements />
+  <behavior />
+</plugin>

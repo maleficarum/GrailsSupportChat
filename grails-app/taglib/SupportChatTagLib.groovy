@@ -24,8 +24,11 @@ class SupportChatTagLib {
 	* Creates the main chat window
 	*/	
 	def supportChat = { attrs, body ->
+		out << "<script src=\"js/bootstrap.min.js\"></script>"		
+		out << "<link rel='stylesheet' href='css/bootstrap.min.css' />"		
+		out << "<link rel='stylesheet' href='css/bootstrap-responsive.min.css' />"		
+		out << "<script src=\"js/sp.js\"></script>"	
 		out << render(template:"/templates/chatWindow", plugin:"supportChat")
-//	    out << body()
 	}
 
 }
