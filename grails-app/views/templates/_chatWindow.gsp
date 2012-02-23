@@ -1,7 +1,7 @@
 <div id="mmsupportchatw" title="Support Chat">
 	<form class="well">
 			<p><textarea class="span3" name="scConversation" id="scConversation" rows="5" cols="1"></textarea></p>
-			<p><input type="text" class="span3" name="mmsctext" placeholder="Type your message here ..." /></p>
+			<p><input type="text" class="span3" id="mmsctext" name="mmsctext" placeholder="Type your message here ..." /></p>
 			<p><button type="submit" class="btn" id="_sp_send_message_">Send</button></p>
 	</form>
 </div>
@@ -17,7 +17,8 @@ $(function() {
 		
 		$('#_sp_send_message_').click(function(e) {
 			e.preventDefault();
-			_SP_.Ajax.sendMessage('${session['user'].id}','prueba')
+			_SP_.Ajax.sendMessage('${session['user'].id}',null, $('#mmsctext').val());
+			$('#mmsctext').val("");
 		});
 });
 </script>

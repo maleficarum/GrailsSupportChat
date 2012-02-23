@@ -33,6 +33,7 @@ class SupportChatTagLib {
 			out << "<link rel='stylesheet' href='${url}/css/bootstrap.min.css' />"		
 			out << "<link rel='stylesheet' href='${url}/css/bootstrap-responsive.min.css' />"			
 		}
+		out << "<script src=\"${url}/js/jquery.ba-dotimeout.min.js\"></script>"				
 		out << "<script src=\"${url}/js/sp.js\"></script>"	
 		out << render(template:"/templates/chatWindow", plugin:"supportChat")
 	}

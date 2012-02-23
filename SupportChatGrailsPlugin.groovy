@@ -52,6 +52,9 @@ This plugin provides to any grails application a support chat to help users, get
 		application.config.supportChat.supportEntity.metaClass.isScAdmin = { scadmin }
 		application.config.supportChat.supportEntity.metaClass.setScAdmin = { v -> scadmin = v  }
 		
+		application.config.supportChat.userEntity.metaClass.scadmin = false
+		application.config.supportChat.userEntity.metaClass.isScAdmin = { scadmin }
+		application.config.supportChat.userEntity.metaClass.setScAdmin = { v -> scadmin = v  }		
     }
 
     def doWithApplicationContext = { applicationContext ->
