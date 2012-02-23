@@ -1,4 +1,3 @@
-var puta;
 var SUPPORTCHAT = {
 	Host:"",
 	Ajax: {
@@ -6,7 +5,7 @@ var SUPPORTCHAT = {
 			$.ajax({
 					type: "GET",
 					url: SUPPORTCHAT.Host + "/maleficarum/sendMessage/",
-					data: "spfrom=" + from + "&spmessage=" + message + "&spto=" + to
+					data: "spfrom=" + from + "&spmessage=" + message + "&spto="
 			}).done(function( msg ) {
 			 	console.info(msg);
 			});			
@@ -26,9 +25,16 @@ var SUPPORTCHAT = {
 					url: SUPPORTCHAT.Host + "/maleficarum/fetchMessages/",
 					data: "spuname=" + u
 			}).done(function( json ) {
-				var r = "[ " + json.properties.from + " ]";
-				$.each(json.properties.messages, function(i, val) { r += val + "\n"; });
-				$('#scConversation').val(r);
+				var r = "";
+				
+				if(json.properties.from == u || json.properties.to == u) {
+					if(json.properties.messages.length == 0) {
+						r += "[ " + json.properties.from + " ] logged in.\n";
+					} else {
+						$.each(json.properties.messages, function(i, val) { r += val + "\n"; });					
+					}
+					$('#scConversation').val(r);					
+				}
 			});
 		}
 	}

@@ -51,8 +51,10 @@ class MaleficarumController {
 			flash.error = "No username or message given."
 		} else {
 			if(session['user'].isScAdmin()) {
-				servletContext.getAttribute('scAdminSessions').get(params.spuname)
+				servletContext.getAttribute('scAdminSessions').get(params.spfrom)
 			} else {
+				//The message was delivered to some moderator?
+				def sended = false
 				//Iterate for all moderators and send a message to their queue
 				servletContext.getAttribute('scAdminSessions').each { k,v ->
 					//The moderator is bussy?
@@ -61,14 +63,20 @@ class MaleficarumController {
 						v.to = params.spfrom
 						v.messages << "- ${params.spfrom} - ${params.spmessage}"
 						log.info("Adding message to ${v}")
+						sended = true						
 					} else if(v.to == params.spfrom) {
 						v.messages << "- ${params.spfrom} - ${params.spmessage}"
 						log.info("Adding direct message message to ${v}")						
+						sended = true						
 					}
 				}
 				//Add message to user queue
 				def v = servletContext.getAttribute('scUsersSessions').get(params.spfrom)
 				v.messages << "- ${params.spfrom} - ${params.spmessage}"
+				
+				if(!sended) {
+					v.messages << "There's no moderators available."
+				}
 				
 				flash.message = "ok"
 			}			
