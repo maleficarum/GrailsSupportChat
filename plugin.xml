@@ -1,4 +1,4 @@
-<plugin name='support-chat' version='0.1' grailsVersion='2.0 &gt; *'>
+<plugin name='support-chat' version='0.1' grailsVersion='2.0.1 &gt; *'>
   <author>Oscar Ivan Hernandez Ventura</author>
   <authorEmail>oscar@angellore.com.mx</authorEmail>
   <title>Support Chat Plugin</title>
@@ -7,6 +7,7 @@
   <documentation>http://grails.org/plugin/support-chat</documentation>
   <type>SupportChatGrailsPlugin</type>
   <resources>
+    <resource>mx.maleficarum.supportchat.MaleficarumController</resource>
     <resource>SupportChatTagLib</resource>
   </resources>
   <repositories>
@@ -14,10 +15,41 @@
     <repository name='http://repo.grails.org/grails/plugins' url='http://repo.grails.org/grails/plugins/' />
     <repository name='http://repo.grails.org/grails/core' url='http://repo.grails.org/grails/core/' />
     <repository name='grailsCore' url='http://svn.codehaus.org/grails/trunk/grails-plugins' />
+    <repository name='http://maven.twttr.com' url='http://maven.twttr.com/' />
+    <repository name='http://nexus.scala-tools.org/content/repositories/releases' url='http://nexus.scala-tools.org/content/repositories/releases/' />
     <repository name='mavenCentral' url='http://repo1.maven.org/maven2/' />
   </repositories>
-  <dependencies />
-  <plugins />
+  <dependencies>
+    <compile>
+      <dependency group='org.htmlparser' name='htmlparser' version='1.6' />
+      <dependency group='commons-codec' name='commons-codec' version='1.4' />
+      <dependency group='org.slf4j' name='slf4j-api' version='1.6.1' />
+      <dependency group='org.scala-lang' name='scala-library' version='2.9.1' />
+      <dependency group='com.solab.scalasql' name='ScalaSQL' version='0.8' />
+      <dependency group='commons-httpclient' name='commons-httpclient' version='3.1' />
+      <dependency group='org.scala-lang' name='scala-compiler' version='2.9.1' />
+      <dependency group='bright' name='BrightPlugins' version='2.3' />
+      <dependency group='bright' name='BrightSpring' version='2.6' />
+    </compile>
+    <runtime>
+      <dependency group='postgresql' name='postgresql' version='9.0-801.jdbc4' />
+    </runtime>
+  </dependencies>
+  <plugins>
+    <runtime>
+      <plugin group='org.grails.plugins' name='export' version='1.0' />
+      <plugin group='org.grails.plugins' name='cometd' version='0.2.2' />
+      <plugin group='org.grails.plugins' name='hibernate' version='2.0.1' />
+      <plugin group='org.grails.plugins' name='scala' version='0.6.4' />
+      <plugin group='org.grails.plugins' name='executor' version='0.3' />
+      <plugin group='org.grails.plugins' name='recaptcha' version='0.5.2' />
+      <plugin group='org.grails.plugins' name='resources' version='1.1.5' />
+      <plugin group='org.grails.plugins' name='jquery' version='1.7.1' />
+    </runtime>
+    <build>
+      <plugin group='org.grails.plugins' name='tomcat' version='2.0.1' />
+    </build>
+  </plugins>
   <runtimePluginRequirements />
   <behavior />
 </plugin>

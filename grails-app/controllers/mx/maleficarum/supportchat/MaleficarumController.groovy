@@ -12,6 +12,20 @@ class MaleficarumController {
 	
 	def servletContext
 	def log = LoggerFactory.getLogger(getClass())
+	
+	def unjoinChat() {
+		def map
+		
+		if(session['user'].isScAdmin()) {
+			map = servletContext.getAttribute('scAdminSessions')
+		} else {
+			map = servletContext.getAttribute('scUsersSessions')			
+		}
+		
+		map?.remove(params.spuname)	
+		flash.message = "ok"	
+		render flash as JSON
+	}
 
 	def joinChat() {
 		def e = new Expando()
@@ -45,13 +59,23 @@ class MaleficarumController {
 
     def sendMessage() {
 		println("Admin " + servletContext.getAttribute('scAdminSessions'))
-		println("Users " + servletContext.getAttribute('scUsersSessions'))		
+		println("Users " + servletContext.getAttribute('scUsersSessions'))
+		println("PARAMS ${params}")		
 		
-		if(!(params.spfrom && params.spmessage && params.spto)) {
+		if(!(params.spfrom && params.spmessage)) {
 			flash.error = "No username or message given."
 		} else {
 			if(session['user'].isScAdmin()) {
-				servletContext.getAttribute('scAdminSessions').get(params.spfrom)
+				def vsource = servletContext.getAttribute('scAdminSessions').get(params.spfrom)
+				def vdest = servletContext.getAttribute('scUsersSessions').get(params.spto)				
+				//If to, then send broadcast for all users
+				if(params.spto) {
+					//PARAMS [spfrom:admin, spmessage:sera, spto:304280490000, action:sendMessage, controller:maleficarum]
+					//Direct message					
+					vsource.messages << "- ${params.spfrom} - ${params.spmessage}"
+					vdest.messages << "- ${params.spfrom} - ${params.spmessage}" 
+				}
+
 			} else {
 				//The message was delivered to some moderator?
 				def sended = false

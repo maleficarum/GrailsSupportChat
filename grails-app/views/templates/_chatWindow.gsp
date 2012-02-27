@@ -1,4 +1,5 @@
 <div id="mmsupportchatw" title="Support Chat">
+	
 	<form class="well">
 			<p><textarea class="span3" name="scConversation" id="scConversation" rows="5" cols="1"></textarea></p>
 			<p><input type="text" class="span3" id="mmsctext" name="mmsctext" placeholder="Type your message here ..." /></p>
@@ -8,7 +9,15 @@
 
 <script>
 $(function() {
-		$( "#mmsupportchatw" ).dialog({ position: 'bottom', closeOnEscape: false, width: 350, resizable: false });
+		$( "#mmsupportchatw" ).dialog({ position: 'bottom', closeOnEscape: false, width: 350, resizable: false, 
+			close: function(event, ui) { 
+				SUPPORTCHAT.Ajax.disconnect('${session['user'].id}'); 
+			} 
+		});
+		
+		$(window).unload(function () {  
+			SUPPORTCHAT.Ajax.disconnect('${session['user'].id}'); 
+		});
 		
 		var _SP_ = SUPPORTCHAT;
 		_SP_.Host = "${grailsApplication.config.grails.serverURL}";
@@ -17,7 +26,7 @@ $(function() {
 		
 		$('#_sp_send_message_').click(function(e) {
 			e.preventDefault();
-			_SP_.Ajax.sendMessage('${session['user'].id}',null, $('#mmsctext').val());
+			_SP_.Ajax.sendMessage('${session['user'].id}', $('#mmsctext').val());
 			$('#mmsctext').val("");
 		});
 });
