@@ -20,6 +20,7 @@ var SUPPORTCHAT = {
 				url: SUPPORTCHAT.Host + "/maleficarum/joinChat/",
 				data: "spuname=" + u
 			}).done(function( msg ) {
+				__SC_LOGGED_IN__ = true;
 			 	console.info(msg + " u " + u);
 				setInterval("SUPPORTCHAT.Ajax.fetchMessages('" + u + "')",5000);
 			});
@@ -34,7 +35,7 @@ var SUPPORTCHAT = {
 			});
 		}, fetchMessages : function(u) {
 			if(!__SC_LOGGED_IN__) {
-				SUPPORTCHAT.Ajax.joinChat(from);
+				SUPPORTCHAT.Ajax.joinChat(u);
 				return;
 			}			
 			$.ajax({
