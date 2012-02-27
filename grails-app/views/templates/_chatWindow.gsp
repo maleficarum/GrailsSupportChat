@@ -1,9 +1,9 @@
-<div id="mmsupportchatw" title="Support Chat">
+<div id="mmsupportchatw" title="${message(code: 'sp.main.title')}">
 	
 	<form class="well">
 			<p><textarea class="span3" name="scConversation" id="scConversation" rows="5" cols="1"></textarea></p>
-			<p><input type="text" class="span3" id="mmsctext" name="mmsctext" placeholder="Type your message here ..." /></p>
-			<p><button type="submit" class="btn" id="_sp_send_message_">Send</button></p>
+			<p><input type="text" class="span3" id="mmsctext" name="mmsctext" placeholder="${message(code: 'sp.input.message.placeholder')}" /></p>
+			<p><button type="submit" class="btn" id="_sp_send_message_">${message(code: 'sp.input.message.placeholder')}</button></p>
 	</form>
 </div>
 
