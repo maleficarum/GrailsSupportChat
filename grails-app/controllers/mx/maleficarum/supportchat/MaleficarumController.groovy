@@ -58,9 +58,6 @@ class MaleficarumController {
 	}
 
     def sendMessage() {
-		println("Admin " + servletContext.getAttribute('scAdminSessions'))
-		println("Users " + servletContext.getAttribute('scUsersSessions'))
-		println("PARAMS ${params}")		
 		
 		if(!(params.spfrom && params.spmessage)) {
 			flash.error = "No username or message given."
@@ -72,8 +69,8 @@ class MaleficarumController {
 				if(params.spto) {
 					//PARAMS [spfrom:admin, spmessage:sera, spto:304280490000, action:sendMessage, controller:maleficarum]
 					//Direct message					
-					vsource.messages << "- ${params.spfrom} - ${params.spmessage}"
-					vdest.messages << "- ${params.spfrom} - ${params.spmessage}" 
+					vsource.messages << message(code:'sp.controller.message', args:[params.spfrom, params.spmessage])
+					vdest.messages << message(code:'sp.controller.message', args:[params.spfrom, params.spmessage])
 				}
 
 			} else {
@@ -85,18 +82,18 @@ class MaleficarumController {
 					if(!v.to) {
 						//This is inverted cause the 'to' of admin is 'from' in user messages
 						v.to = params.spfrom
-						v.messages << "- ${params.spfrom} - ${params.spmessage}"
+						v.messages << message(code:'sp.controller.message', args:[params.spfrom, params.spmessage])
 						log.info("Adding message to ${v}")
 						sended = true						
 					} else if(v.to == params.spfrom) {
-						v.messages << "- ${params.spfrom} - ${params.spmessage}"
+						v.messages << message(code:'sp.controller.message', args:[params.spfrom, params.spmessage])
 						log.info("Adding direct message message to ${v}")						
 						sended = true						
 					}
 				}
 				//Add message to user queue
 				def v = servletContext.getAttribute('scUsersSessions').get(params.spfrom)
-				v.messages << "- ${params.spfrom} - ${params.spmessage}"
+				v.messages << message(code:'sp.controller.message', args:[params.spfrom, params.spmessage])
 				
 				if(!sended) {
 					v.messages << "There's no moderators available."

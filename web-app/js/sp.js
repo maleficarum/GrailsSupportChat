@@ -44,6 +44,9 @@ var SUPPORTCHAT = {
 				data: "spuname=" + u
 			}).done(function( json ) {
 				var r = "";
+				if(json.properties == null) {
+					return;
+				}
 				if(__SC_TO_MESSAGE__ == null) {
 					__SC_TO_MESSAGE__ = json.properties.to
 				}
