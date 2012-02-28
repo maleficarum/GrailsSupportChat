@@ -2,7 +2,7 @@
 
 ## Requirements
 
-This plugin includes (if you want) all the neede resources to work :
+This plugin includes (if you want) all the needed resources to work :
 
 <ul>
 	<li>jquery 1.7.1</li>
