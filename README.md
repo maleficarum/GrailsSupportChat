@@ -13,6 +13,17 @@ This plugin includes (if you want) all the needed resources to work :
 ... but, you can include your global resources.
 
 ## Usage
+First, you need to define mavenRepo on config/BuildConfig.groovy in repositories section:
+
+<pre>
+mavenRepo "https://raw.github.com/maleficarum/mavenrepo/master/releases"
+</pre>
+
+Then, install plugin
+
+<pre>
+	grails install-plugin https://raw.github.com/maleficarum/mavenrepo/master/releases/mx/com/maleficarum/grails-support-chat/0.1/grails-support-chat-0.1.zip
+</pre>
 
 To embbed a support chat window on your grails application you need to modify some files:
 
