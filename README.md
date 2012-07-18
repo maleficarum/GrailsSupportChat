@@ -22,7 +22,7 @@ mavenRepo "https://raw.github.com/maleficarum/mavenrepo/master/releases"
 Then, install plugin
 
 <pre>
-	grails install-plugin https://raw.github.com/maleficarum/mavenrepo/master/releases/mx/com/maleficarum/grails-support-chat/0.1/grails-support-chat-0.1.zip
+grails install-plugin mx.com.maleficarum:grails-support-chat:0.1
 </pre>
 
 To embbed a support chat window on your grails application you need to modify some files:
